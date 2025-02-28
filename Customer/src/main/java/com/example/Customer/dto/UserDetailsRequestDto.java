@@ -2,9 +2,8 @@ package com.example.Customer.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
-import lombok.Getter;
 
-public record RegistrationRequestDto(
+public record UserDetailsRequestDto(
         @NotNull(message = "Username cannot be null")
         @Size(min = 5, max = 20, message = "Username must be between 5 and 20 characters")
         @Schema(description = "The username of the user.")

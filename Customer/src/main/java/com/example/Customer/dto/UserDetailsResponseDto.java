@@ -2,7 +2,7 @@ package com.example.Customer.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-public record RegistrationResponseDto(
+public record UserDetailsResponseDto(
         @Schema(description = "The unique identifier of the user.")
         String id,
 
