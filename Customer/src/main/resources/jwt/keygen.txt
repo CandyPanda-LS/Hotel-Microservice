@@ -1,0 +1,2 @@
+openssl genpkey -algorithm RSA -out app.key -outform PEM
+openssl rsa -pubout -in app.key -out app.pub
