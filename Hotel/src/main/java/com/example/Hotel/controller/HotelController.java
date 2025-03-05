@@ -45,4 +45,22 @@ public class HotelController {
                 .status(HttpStatus.CREATED)
                 .body(new ResponseDto<>(HotelConstants.STATUS_201, HotelConstants.MESSAGE_201, hotelResponseDto));
     }
+
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<ResponseDto<HotelResponseDto>> updateHotel(@PathVariable String id, @Valid @RequestBody final HotelRequestDto hotelDetailsRequestDto){
+        HotelResponseDto hotelResponseDto = hotelService.updateHotel(id, hotelDetailsRequestDto);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new ResponseDto<>(HotelConstants.STATUS_200, HotelConstants.MESSAGE_200, hotelResponseDto));
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ResponseDto<String>> deleteHotel(@PathVariable String id){
+        hotelService.deleteHotel(id);
+        return
+                ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(new ResponseDto<>(HotelConstants.STATUS_200, HotelConstants.MESSAGE_200, "Hotel deleted successfully"));
+    }
+
 }

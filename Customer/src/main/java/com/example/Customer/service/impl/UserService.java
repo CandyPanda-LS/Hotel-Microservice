@@ -29,12 +29,12 @@ public class UserService implements IUserService {
 
     @Override
     public UserDetailsResponseDto createUser(UserDetailsRequestDto userDetailsRequestDto) {
-        User user = RegistrationMapper.INSTANCE.registrationRequestDtoToUser(userDetailsRequestDto);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         if (userRepository.existsByUsername(userDetailsRequestDto.username()) ||
                 userRepository.existsByEmail(userDetailsRequestDto.email())) {
             throw new ResourceAlreadyExistsException("User","id", userDetailsRequestDto.username());
         }
+        User user = RegistrationMapper.INSTANCE.registrationRequestDtoToUser(userDetailsRequestDto);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User savedUser = userRepository.save(user);
         return RegistrationMapper.INSTANCE.userToRegistrationResponseDto(savedUser);
     }
