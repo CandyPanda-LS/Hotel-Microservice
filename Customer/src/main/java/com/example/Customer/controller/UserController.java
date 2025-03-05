@@ -30,7 +30,7 @@ public class UserController {
             summary = "Get all users",
             description = "Get all users"
     )
-    @GetMapping("/users")
+    @GetMapping("/all")
     public ResponseEntity<ResponseDto<List<UserDetailsResponseDto>>> getUsers(){
         return
                 ResponseEntity
@@ -42,7 +42,7 @@ public class UserController {
             summary = "Get user by id",
             description = "Get user by id"
     )
-    @GetMapping("/user/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ResponseDto<UserDetailsResponseDto>> getUserById(@PathVariable String id){
         return
                 ResponseEntity

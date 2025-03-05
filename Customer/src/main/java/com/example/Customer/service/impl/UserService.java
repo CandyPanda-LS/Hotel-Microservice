@@ -4,6 +4,7 @@ import com.example.Customer.dto.UserDetailsRequestDto;
 import com.example.Customer.dto.UserDetailsResponseDto;
 import com.example.Customer.dto.mapper.RegistrationMapper;
 import com.example.Customer.exceptions.ResourceAlreadyExistsException;
+import com.example.Customer.exceptions.ResourceNotFoundException;
 import com.example.Customer.model.User;
 import com.example.Customer.repository.UserRepository;
 import com.example.Customer.service.IUserService;
@@ -49,13 +50,13 @@ public class UserService implements IUserService {
     public UserDetailsResponseDto getUserById(String id) {
         return userRepository.findById(id)
                 .map(RegistrationMapper.INSTANCE::userToRegistrationResponseDto)
-                .orElseThrow(() -> new ResourceAlreadyExistsException("User","id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("User","id", id));
     }
 
     @Override
     public UserDetailsResponseDto updateUser(String id, UserDetailsRequestDto userDetailsRequestDto) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceAlreadyExistsException("User","id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("User","id", id));
         user.setUsername(userDetailsRequestDto.username());
         user.setName(userDetailsRequestDto.name());
         user.setEmail(userDetailsRequestDto.email());
@@ -71,7 +72,7 @@ public class UserService implements IUserService {
     @Override
     public void deleteUser(String id) {
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new ResourceAlreadyExistsException("User","id", id));
+                .orElseThrow(() -> new ResourceNotFoundException("User","id", id));
         userRepository.delete(user);
     }
 
