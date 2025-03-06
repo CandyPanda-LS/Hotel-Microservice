@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Hotel</artifactId>
+	<artifactId>hotel</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar </packaging>
+	<packaging>jar</packaging>
 	<name>Hotel</name>
 	<description>Hotel Microservice</description>
 	<url/>
@@ -99,6 +99,11 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<image>
+						<name>
+							lasalhettiarachchi/${project.artifactId}:s4
+						</name>
+					</image>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
