@@ -1,5 +1,7 @@
 spring:
   application:
-    name: CustomerService
+    name: user
+  config:
+    import: "configserver:http://localhost:8071"
   profiles:
     active: dev

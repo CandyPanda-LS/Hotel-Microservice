@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: user
   datasource:
     url: jdbc:postgresql://hotelmsdb.postgres.database.azure.com:5432/postgres
     username: hotadmin
