@@ -9,6 +9,7 @@ public record RoomResponseDto(
         String id,
         String roomName,
         List<Amenities> amenities,
-        String hotelId
+        String hotelId,
+        List<String> packageIds
 ) {
 }

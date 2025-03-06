@@ -10,7 +10,6 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "hotels")
@@ -41,10 +40,6 @@ public class Hotel extends BaseEntity {
     @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Room> rooms;
-
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Package> packages;
 
     private String address;
 }

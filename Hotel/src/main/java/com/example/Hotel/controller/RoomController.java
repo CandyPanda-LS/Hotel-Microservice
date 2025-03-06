@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/api/v1/room", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
@@ -49,6 +51,14 @@ public class RoomController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new ResponseDto<>(RoomConstants.STATUS_200, RoomConstants.MESSAGE_200, "Room deleted successfully"));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<ResponseDto<List<RoomResponseDto>>> getRooms(){
+        return
+                ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(new ResponseDto<>(RoomConstants.STATUS_200, RoomConstants.MESSAGE_200, roomService.getAllRooms()));
     }
 
 

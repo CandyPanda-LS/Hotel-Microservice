@@ -13,6 +13,7 @@ public interface RoomDtoMapper {
 
 //    @Mapping(target = "hotel.rooms", ignore = true)
     @Mapping(source = "hotel.id", target = "hotelId")
+    @Mapping(target = "packageIds", expression = "java(room.getPackages() != null ? room.getPackages().stream().map(com.example.Hotel.model.Packages::getId).toList() : java.util.Collections.emptyList())")
     RoomResponseDto roomToRoomResponseDto(Room room);
 
     Room roomRequestDtoToRoom(RoomRequestDto roomRequestDto);

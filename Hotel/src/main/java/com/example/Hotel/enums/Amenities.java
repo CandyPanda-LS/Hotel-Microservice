@@ -6,10 +6,10 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum Amenities {
-    Air_Conditioning("Air_Conditioning"),
-    Wifi("Wifi"),
-    Television("Television"),
-    Mini_Bar("Mini_Bar");
+    AIR_CONDITIONING("AIR_CONDITIONING"),
+    WIFI("WIFI"),
+    TV("TV"),
+    MINI_BAR("MINI_BAR");
 
     private final String amenity;
 }

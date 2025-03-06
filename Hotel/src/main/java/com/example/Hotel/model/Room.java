@@ -2,6 +2,7 @@ package com.example.Hotel.model;
 
 import com.example.Hotel.enums.Amenities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +11,6 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "rooms")
@@ -38,4 +38,8 @@ public class Room extends BaseEntity{
     @JoinColumn(name = "hotel_id", nullable = false)
     @JsonBackReference
     private Hotel hotel;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Packages> packages;
 }

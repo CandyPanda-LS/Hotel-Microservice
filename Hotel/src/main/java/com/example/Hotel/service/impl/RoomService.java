@@ -15,6 +15,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoomService implements IRoomService {
 
@@ -34,14 +36,22 @@ public class RoomService implements IRoomService {
         Room room = RoomDtoMapper.INSTANCE.roomRequestDtoToRoom(roomRequestDto);
         room.setHotel(hotel);
         Room savedRoom = roomRepository.save(room);
-        RoomResponseDto roomResponseDto = RoomDtoMapper.INSTANCE.roomToRoomResponseDto(savedRoom);
-        return roomResponseDto;
+        return RoomDtoMapper.INSTANCE.roomToRoomResponseDto(savedRoom);
 
     }
 
     @Override
     public RoomResponseDto getRoomById(String id) {
-        return null;
+        return roomRepository.findById(id)
+                .map(RoomDtoMapper.INSTANCE::roomToRoomResponseDto)
+                .orElseThrow(() -> new EntityNotFoundException("Room not found"));
+    }
+
+    @Override
+    public List<RoomResponseDto> getAllRooms() {
+        return roomRepository.findAll().stream()
+                .map(RoomDtoMapper.INSTANCE::roomToRoomResponseDto)
+                .toList();
     }
 
     @Override
