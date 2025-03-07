@@ -1,4 +1,4 @@
-docker build --platform=linux/amd64 . -t lasalhettiarachchi/userms:s2
+docker build --platform=linux/amd64 . -t lasalhettiarachchi/userms:s3
 # provides all the images in the system
 docker images
 docker run -p 8080:8080 lasalhettiarachchi/userms:s2
