@@ -2,9 +2,9 @@ spring:
   application:
     name: user
   datasource:
-    url: jdbc:postgresql://hotelmsdb.postgres.database.azure.com:5432/postgres
-    username: hotadmin
-    password: admin@123
+    url: "{cipher}e7c99791e1555a32f8ba59071e557698399ceb057b9e7ef2adec418beb750b9dcd8f9a9ecf81f7778baae8bdf7b0295c"
+    username: "{cipher}188be752197f82d11b4e0575a32de7d470e9c219277c3f7a0b58a524b765aed8"
+    password: "{cipher}2db4524e223b47335316f88594614de0ec1e772820d7516b1375b70c4e2178d1"
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
