@@ -1,0 +1,61 @@
+services:
+  configserver:
+    image: "lasalhettiarachchi/configserver:s3"
+    container_name: configserver-ms
+    ports:
+      - "8071:8071"
+    healthcheck:
+      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - hotelSystem
+#    platform: linux/amd64
+  hotel:
+    image: "lasalhettiarachchi/hotelms:s3"
+    container_name: hotel-ms
+    ports:
+      - "8081:8081"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - hotelSystem
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071"
+      SPRING_PROFILES_ACTIVE: "dev"
+      SPRING_APPLICATION_NAME: "hotel"
+#    platform: linux/amd64
+  user:
+    image: "lasalhettiarachchi/userms:s3"
+    container_name: user-ms
+    ports:
+      - "8080:8080"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - hotelSystem
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071"
+      SPRING_PROFILES_ACTIVE: "dev"
+      SPRING_APPLICATION_NAME: "user"
+#    platform: linux/amd64
+
+networks:
+  hotelSystem:
+    driver: bridge
