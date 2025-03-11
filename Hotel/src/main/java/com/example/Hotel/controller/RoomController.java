@@ -2,10 +2,7 @@ package com.example.Hotel.controller;
 
 import com.example.Hotel.constants.HotelConstants;
 import com.example.Hotel.constants.RoomConstants;
-import com.example.Hotel.dto.ResponseDto;
-import com.example.Hotel.dto.RoomRequestDto;
-import com.example.Hotel.dto.RoomResponseDto;
-import com.example.Hotel.dto.RoomUpdateRequestDto;
+import com.example.Hotel.dto.*;
 import com.example.Hotel.service.IRoomService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +39,15 @@ public class RoomController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new ResponseDto<>(RoomConstants.STATUS_200, RoomConstants.MESSAGE_200, roomResponseDto));
+    }
+
+    @PatchMapping("/update/availabilities/{id}")
+    public ResponseEntity<ResponseDto<String>> updateRoomAvailabilities(@RequestParam String id, @RequestBody List<RoomAvailabilityRequestDto> requestDtos){
+        roomService.updateRoomAvailabilities(id, requestDtos);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new ResponseDto<>(RoomConstants.STATUS_200, RoomConstants.MESSAGE_200, "Room availabilities updated successfully"));
     }
 
     @DeleteMapping("/delete/{id}")

@@ -2,20 +2,21 @@ spring:
   application:
     name: configserver
   profiles:
-#    active: native
-    active: git
+    active: native
+#    active: git
   cloud:
     config:
       server:
-#        native:
+        native:
 #          search-locations: "classpath:/config"
-        git:
-          uri: "https://github.com/CandyPanda-LS/Hotel-Microservice.git"
-          default-label: master
-          search-paths: configs
-          timeout: 5
-          clone-on-start: true
-          force-pull: true
+          search-locations: "file:/Users/lasalhettiarachchi/IdeaProjects/Hotel Microservice/configs"
+#        git:
+#          uri: "https://github.com/CandyPanda-LS/Hotel-Microservice.git"
+#          default-label: master
+#          search-paths: configs
+#          timeout: 5
+#          clone-on-start: true
+#          force-pull: true
         encrypt:
           enabled: true
 server:

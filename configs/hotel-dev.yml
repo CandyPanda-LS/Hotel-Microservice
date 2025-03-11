@@ -14,3 +14,18 @@ spring:
         default_schema: hotel_db
 server:
   port: 8082
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8070/eureka/
+
+info:
+  app:
+    name: "hote"
+    description: "hotel Service"
+    version: 1.0.0

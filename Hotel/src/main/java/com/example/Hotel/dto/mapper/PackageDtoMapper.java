@@ -18,6 +18,12 @@ public interface PackageDtoMapper {
     @Mapping(source = "room.id", target = "roomId")
     PackageResponseDto packageToPackageResponseDto(Packages packages);
 
+    @Mapping(ignore = true, target = "createdAt")
+    @Mapping(ignore = true, target = "createdBy")
+    @Mapping(ignore = true, target = "updatedAt")
+    @Mapping(ignore = true, target = "updatedBy")
+    @Mapping(ignore = true, target = "id")
+    @Mapping(ignore = true, target = "room")
     Packages packageDtoToPackage(PackageRequestDto packageRequestDto);
 
 }

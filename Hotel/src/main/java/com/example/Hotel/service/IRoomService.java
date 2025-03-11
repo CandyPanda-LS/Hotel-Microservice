@@ -1,5 +1,6 @@
 package com.example.Hotel.service;
 
+import com.example.Hotel.dto.RoomAvailabilityRequestDto;
 import com.example.Hotel.dto.RoomRequestDto;
 import com.example.Hotel.dto.RoomResponseDto;
 import com.example.Hotel.dto.RoomUpdateRequestDto;
@@ -11,5 +12,6 @@ public interface IRoomService {
     RoomResponseDto getRoomById(String id);
     List<RoomResponseDto> getAllRooms();
     RoomResponseDto updateRoom(String id, RoomUpdateRequestDto roomRequestDto);
+    void updateRoomAvailabilities(String id, List<RoomAvailabilityRequestDto> requestDtos);
     void deleteRoom(String id);
 }

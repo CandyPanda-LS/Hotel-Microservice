@@ -14,6 +14,13 @@ public interface HotelDtoMapper {
     HotelResponseDto hotelToHotelResponseDto(Hotel hotel);
 
     @Mapping(source = "hotelAddress", target = "address")
+    @Mapping(ignore = true, target = "createdAt")
+    @Mapping(ignore = true, target = "createdBy")
+    @Mapping(ignore = true, target = "updatedAt")
+    @Mapping(ignore = true, target = "updatedBy")
+    @Mapping(ignore = true, target = "id")
+    @Mapping(ignore = true, target = "reviews")
+    @Mapping(ignore = true, target = "rooms")
     Hotel hotelRequestDtoToHotel(HotelRequestDto hotelRequestDto);
 
 }

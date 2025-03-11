@@ -1,6 +1,6 @@
 spring:
   application:
-    name: hotel
+    name: reservation
   config:
     import: "configserver:http://localhost:8071"
   profiles:
@@ -14,3 +14,4 @@ management:
   info:
     env:
       enabled: true
+

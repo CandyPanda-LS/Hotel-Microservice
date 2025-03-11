@@ -42,4 +42,9 @@ public class Room extends BaseEntity{
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Packages> packages;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @OrderBy("date ASC")
+    private List<RoomAvailability> availability;
 }
